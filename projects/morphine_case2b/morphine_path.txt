@@ -1,0 +1,14 @@
+C06160	(S)-Norcoclaurine	1467915486
+C06161 	(S)-Coclaurine	1467915499
+C05176	(S)-N-Methylcoclaurine	1467907537
+C05202	3'-Hydroxy-N-methyl-(S)-coclaurine	1467907715
+C02105	(S)-Reticuline	1467886235
+C06167	1,2-Dehydroreticuline	1467915550
+C05178	(R)-Reticuline	1467886235
+C05179	Salutaridine	1467907575
+C05220	Salutaridinol	1467907816
+C05322	7-O-Acetylsalutaridinol	1467908574
+C06173	Thebaine	1467915587
+C06175	Oripavine	1467915612
+C01735	Morphinone	1467883058
+C01516	Morphine	1467881170
