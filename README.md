@@ -13,7 +13,7 @@ dependencies and fetching the data from the git repository.
 
 - python 3
 - rdkit environment
-- netoworkx
+- networkx
 
 rdkit is required for balance calculation and visualisation. In case the rdkit is not possible to install,
 only the ranked pathways list will be generated.
