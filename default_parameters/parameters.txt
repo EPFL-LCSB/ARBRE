@@ -1,0 +1,76 @@
+# The ARBRE does 2 things:
+# I: Pathway Search (put "p" to parameter pathways_or_networkexp)
+# II: Network expansion (put "n" to parameter pathways_or_networkexp)
+pathways_or_networkexp|p
+
+# General parameters
+CAR_threshold|0.34
+
+# Only activate balance calculation if you are operating within working rdkit environment
+calculate_balance|0
+
+# I:
+# Stages of the algorithm to execute pathway search
+# Avoid executing same stage twice if the consecutive stage failed
+# stage 1 : pathway search
+# stage 2 : reaction assignment
+# stage 3 : enzyme assignment
+# stage 4 : pathways ranking
+# stage 5 : visualization
+
+#stages|1,2,3,4,5
+stages|1,2,3,4,5
+
+# Pathway score calculation
+# pathway score=0.25× BR+0.25× CAR+0.25×(shortest PL)/PL+0.25× KR
+# BR - average BridgIT score
+# CAR - average CAR
+# PL - pathway length
+# KR - percent of known reactions
+# weight for each of the parameters
+weight_BR|0.25
+weight_CAR|0.25
+weight_PL|0.25
+weight_KR|0.25
+
+# Source compound inchikey
+# example : tyrosine
+source|OUYCCCASQSFEME
+
+# Use list of inchikeys of source compounds
+# the list of source compounds is in the parameters/source_compounds.txt
+# example : tyrosine, phenylalanine and chorismate
+use_source_compounds_list|no
+
+# Target compound inchikey
+# example : scoulerine
+target|KNWVMRVOBAFFMH
+
+# Number of the shortest pathways for each precursor compound
+# Default 10
+num_shortest_pathways|10
+
+# Type of the distance used in the pathway search
+# Default : exponential distance with reference for known reactions
+# 1 - yes, 0 - no
+prefer_known|1
+use_exponential_transformation|1
+exclude_unbalanced|0
+
+# BridgIT predictions threshold
+bridgit_threshold|0.3
+
+# Number of reactions per RP-pair (cofactor variations)
+rxn_per_rp_pair|3
+
+# Number of BridgIT predictions per reactions
+bridgit_pred_per_reaction|3
+
+# Number of top pathways to draw
+top_pathways_to_draw|1
+
+# II:
+# Network expansion
+# store your compound LCSB IDs for the pathway you want to expand in the /parameters/path_compounds.txt file
+generations_expansion|4
+num_top_patented_compounds_select|15
