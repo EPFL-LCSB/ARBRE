@@ -1,0 +1,6 @@
+.idea
+output/
+preparing_data/
+temp/
+venv/*
+data/compound_atoms.json
