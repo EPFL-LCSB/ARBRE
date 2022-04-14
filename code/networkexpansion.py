@@ -85,8 +85,8 @@ class NetworkExpansion():
         return G_sub_neighbors
 
     def writeOutputAndGephiFile(self, G_out, dict_comp_gen, dict_edges_gen):
-        if not os.path.exists('../output/'+self.data.projectname+'/visualization'):
-            os.mkdir('../output/'+self.data.projectname+'/visualization')
+        #if not os.path.exists('../output/'+self.data.projectname+'/visualization'):
+        #    os.mkdir('../output/'+self.data.projectname+'/visualization')
         if not os.path.exists(self.data.gephifilesfolder):
             os.mkdir(self.data.gephifilesfolder)
 

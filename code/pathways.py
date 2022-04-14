@@ -12,6 +12,18 @@ class Network():
         self.createGraphFile()
 
     def createGraphFile(self):
+        self.G = nx.Graph()
+
+        print("Load network...")
+
+        df_network = self.data.df_network[self.data.df_network['score'] >= self.data.CAR_threshold]
+        df_network = df_network[df_network['max_bridgit'] >= self.data.bridgit_threshold]
+
+        for index, row in df_network.iterrows():
+            self.G.add_edges_from([(int(row['source']), int(row['target']),
+                                        {'id': row['UID of pair'], 'car': row['score'],
+                                         'dist': row['dist'], 'dist_known':row['dist_known'],
+                                         'dist_exp': row['dist_exp'], 'dist_exp_known':row['dist_exp_known']})])
 
         compoundsPassFilter = self.getFittingCompounds()
 

@@ -40,8 +40,9 @@ class Data():
         self.pathway_enzymes_file='../output/'+self.projectname+'/pathway_enzymes.txt'
         self.ranked_pathway_file = '../output/'+self.projectname+'/pathways.csv'
         self.compound_limits_file = '../projects/'+self.projectname+'/compound_parameters.csv'
-        self.gephifilesfolder = '../output/'+self.projectname+'/visualization/gephifiles/'
-        self.pw_img_folder = '../output/'+self.projectname+'/visualization/pathways_img'
+        self.gephifilesfolder = '../output/'+self.projectname+'/visualization/'
+        #self.pw_img_folder = '../output/'+self.projectname+'/visualization/pathways_img'
+        self.pw_img_folder = '../output/'+self.projectname+'/visualization'
 
         # Setting the defaults in case the individual parameter files were not provided
         if os.path.exists( '../projects/'+self.projectname+'/parameters.txt'):

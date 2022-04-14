@@ -21,12 +21,12 @@ class Visualization():
         self.get_smiles_dict()
 
     def folderStructure(self):
-        if not os.path.exists('../temp'):
-            os.mkdir('../temp')
-        if not os.path.exists('../temp/compound_images'):
-            os.mkdir('../temp/compound_images')
-        if not os.path.exists('../output/'+self.data.projectname+'/visualization'):
-            os.mkdir('../output/'+self.data.projectname+'/visualization')
+        #if not os.path.exists('../temp'):
+        #    os.mkdir('../temp')
+        #if not os.path.exists('../temp/compound_images'):
+        #    os.mkdir('../temp/compound_images')
+        #if not os.path.exists('../output/'+self.data.projectname+'/visualization'):
+        #    os.mkdir('../output/'+self.data.projectname+'/visualization')
         if not os.path.exists(self.pw_img_folder):
             os.mkdir(self.pw_img_folder)
 
@@ -57,13 +57,13 @@ class Visualization():
     def print_png_from_smiles(self, smiles, refV):
         mol = AllChem.MolFromSmiles(smiles)
         AllChem.Compute2DCoords(mol)
-        Draw.MolToFile(mol,"../temp/compound_images/%s.png"%refV,size=(200,250))
+        Draw.MolToFile(mol,self.pw_img_folder+"/%s.png"%refV,size=(200,250))
 
 
     def print_png_from_molfile(self, comp_id, molfile_folder):
         mol = AllChem.MolFromMolFile(molfile_folder + comp_id+'.mol')
         AllChem.Compute2DCoords(mol)
-        Draw.MolToFile(mol,"../temp/compound_images/%s.png"%comp_id,size=(200,250))
+        Draw.MolToFile(mol,self.pw_img_folder+"/%s.png"%comp_id,size=(200,250))
 
 
     # drawing the combined overview of the pathway
@@ -76,7 +76,7 @@ class Visualization():
             self.addPathwayGraphToImage(index)
 
     def combine_images_for_one_pathway(self, pathway_id, intermediates):
-        compound_images_pathway = ['../temp/compound_images/' + str(refV) +'.png' for refV in intermediates]
+        compound_images_pathway = [self.pw_img_folder+'/' + str(refV) +'.png' for refV in intermediates]
 
         images = [Image.open(x) for x in compound_images_pathway]
         widths, heights = zip(*(i.size for i in images))
@@ -134,12 +134,12 @@ class Visualization():
         #fig.patch.set_visible(False)
         ax.axis('off')
 
-        fig.savefig('graph_path_temp.png', bbox_inches='tight', pad_inches=0)
+        fig.savefig(self.pw_img_folder+'/graph_path_temp.png', bbox_inches='tight', pad_inches=0)
 
     def addPathwayGraphToImage(self, pathway_id):
 
         imgage_pw_file = self.pw_img_folder+'/pathway_{}.jpg'.format(pathway_id)
-        image_graph_file = 'graph_path_temp.png'
+        image_graph_file = self.pw_img_folder+'/graph_path_temp.png'
 
         image_pw = Image.open(imgage_pw_file)
 
@@ -167,5 +167,5 @@ class Visualization():
 
         new_im.save(self.pw_img_folder+'/pathway_with_graph_{}.jpg'.format(pathway_id))
 
-        os.remove('graph_path_temp.png')
+        os.remove(self.pw_img_folder+'/graph_path_temp.png')
         os.remove(self.pw_img_folder+'/pathway_{}.jpg'.format(pathway_id))
