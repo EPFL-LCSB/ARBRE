@@ -9,6 +9,9 @@ CAR_threshold|0.8
 # Only activate balance calculation if you are operating within working rdkit environment
 calculate_balance|0
 
+# Exclude structure based pairs (compounds pairs from known reactions for which BNICE.ch atom mapping was not possible)
+structure_based_pairs|0
+
 
 # I:
 # Stages of the algorithm to execute pathway search

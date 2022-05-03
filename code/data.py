@@ -91,6 +91,7 @@ class Data():
         self.target_compound_inchikey = dict_param['target']
         self.num_shortest_pathways = int(dict_param['num_shortest_pathways'])
         self.prefer_known = int(dict_param['prefer_known'])
+        self.structure_based_pairs = int(dict_param['structure_based_pairs'])
         self.use_exponential_transformation = int(dict_param['use_exponential_transformation'])
         self.use_source_compounds_list = dict_param['use_source_compounds_list']
         self.stages = [int(i) for i in dict_param['stages'].split(',')]
@@ -138,6 +139,8 @@ class Data():
         self.df_reactions = self.df_reactions[~self.df_reactions.rxnUID.isin(self.excludereactions)]
         edges_uids_keep = set(self.df_reactions['UID of pair'].to_list())
         self.df_network = self.df_network[self.df_network['UID of pair'].isin(edges_uids_keep)]
+        self.df_network = self.df_network[self.df_network['structure_based']<=self.structure_based_pairs]
+
 
     def findPrecursorAndTargetLCSBID(self):
         self.main_precursor = self.getLCSBIDfromINCHIKEY(self.source_compound_inchikey)
@@ -165,9 +168,9 @@ class Data():
         """
         if self.exclude_unbalanced == 1:
             df_balance = pd.read_csv('../data/reaction_balance.csv')
-            num_reactions_before = len(self.df_reactions)
+            num_reactions_before = len((set(self.df_reactions['rxnUID'].to_list())))
             self.df_reactions = self.df_reactions.merge(df_balance, how="inner", on='rxnUID')
-            print(len(self.df_reactions), " balanced reactions selected out of ", num_reactions_before, "initial reactions")
+            print(len(set(self.df_reactions['rxnUID'].to_list())), " balanced reactions selected out of ", num_reactions_before, "initial reactions")
 
 
 
