@@ -32,7 +32,7 @@ Since networkx package is not part of the default rdkit environment, install it 
 
 ### Download repository
 
-`$ git clone https://c4science.ch/source/arbre.git`
+`$ git clone https://github.com/EPFL-LCSB/ARBRE.git`
 
 If you are installing on macOS, make sure you have Homebrew installed, otherwise you might get "git: 'lfs' is not a git command." error.
 Once you installed Homebrew, run
